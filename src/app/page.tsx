@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const imgBackgroundImage = "/241c6a51f19c1f624895d832b17ea3b908e48ae0.png";
-const imgImage17 = "/7cc22bd830e6d3a71d54f736e5488d3150a7361c.png";
+const imgImage17 = "/CM Logo.png";
 const imgFrame16 = "/88084189288a5ddc3b5d32c55b9fb330837d52dc.svg";
 
 export default function Home() {
