@@ -1,18 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  fallback: ['system-ui', 'arial'],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.congzhoumachinery.com'),
   title: "Congzhou Machinery - A UniPack Company",
   description: "Congzhou Packaging Machinery Mfg. Co. has been strategically acquired by UniPack Corrugated, marking our entry into the Indian and Asian markets as a global leader in printing and packaging engineering solutions.",
   keywords: ["Congzhou Machinery", "UniPack", "packaging machinery", "corrugated packaging", "industrial equipment", "acquisition", "India operations"],
@@ -55,7 +65,6 @@ export const metadata: Metadata = {
     shortcut: "/FAVICON.png",
     apple: "/FAVICON.png",
   },
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({

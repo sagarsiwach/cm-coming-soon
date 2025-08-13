@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const imgBackgroundImage = "/241c6a51f19c1f624895d832b17ea3b908e48ae0.png";
@@ -10,12 +11,16 @@ const imgFrame16 = "/88084189288a5ddc3b5d32c55b9fb330837d52dc.svg";
 export default function Home() {
   const [countdown, setCountdown] = useState(15);
 
+  const handleRedirect = useCallback(() => {
+    window.location.href = 'https://www.unipack.asia';
+  }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          window.location.href = 'https://www.unipack.asia';
+          handleRedirect();
           return 0;
         }
         return prev - 1;
@@ -23,7 +28,7 @@ export default function Home() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [handleRedirect]);
 
   return (
     <motion.div
@@ -34,12 +39,17 @@ export default function Home() {
       data-name="Desktop"
       id="node-3589_12500"
     >
-      <div
-        className="absolute bg-center bg-cover bg-no-repeat h-full left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-full min-h-screen"
-        data-name="Background Image"
-        id="node-3589_12501"
-        style={{ backgroundImage: `url('${imgBackgroundImage}')` }}
-      />
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={imgBackgroundImage}
+          alt="Congzhou Machinery background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          quality={90}
+        />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,12 +70,16 @@ export default function Home() {
                 aria-hidden="true"
                 className="absolute border border-solid border-stone-400 inset-[-0.5px] pointer-events-none rounded-tl-[10.5px] rounded-tr-[10.5px]"
               />
-              <div
-                className="bg-[0.09%_0%] bg-no-repeat bg-[length:334.25%_100%] h-20 shrink-0 w-[130px]"
-                data-name="image 17"
-                id="node-3589_12505"
-                style={{ backgroundImage: `url('${imgImage17}')` }}
-              />
+              <div className="relative h-20 w-[130px] shrink-0">
+                <Image
+                  src={imgImage17}
+                  alt="Congzhou Machinery logo"
+                  fill
+                  className="object-contain object-left"
+                  sizes="130px"
+                  quality={95}
+                />
+              </div>
               <div
                 className="bg-[#f00027] overflow-clip relative shrink-0 size-20"
                 data-name="Square Logo - Red Background"
@@ -75,10 +89,13 @@ export default function Home() {
                   className="absolute h-[60.889px] left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] w-[63.111px]"
                   id="node-3589_12507"
                 >
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
+                  <Image
                     src={imgFrame16}
+                    alt="UniPack Corrugated logo"
+                    fill
+                    className="object-contain"
+                    sizes="64px"
+                    quality={95}
                   />
                 </div>
               </div>
