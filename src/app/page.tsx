@@ -4,7 +4,8 @@ import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const imgBackgroundImage = "/241c6a51f19c1f624895d832b17ea3b908e48ae0.png";
+const backgroundVideo = "/YDxLSUQWUr3nHFk3bv4YRZtHRQ.mp4";
+const imgBackgroundImage = "/241c6a51f19c1f624895d832b17ea3b908e48ae0.png"; // Fallback image
 const imgImage17 = "/CM Logo.png";
 const imgFrame16 = "/88084189288a5ddc3b5d32c55b9fb330837d52dc.svg";
 
@@ -40,15 +41,26 @@ export default function Home() {
       id="node-3589_12500"
     >
       <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={imgBackgroundImage}
-          alt="Congzhou Machinery background"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-          quality={90}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+          poster={imgBackgroundImage}
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          <Image
+            src={imgBackgroundImage}
+            alt="Congzhou Machinery background"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            quality={90}
+          />
+        </video>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
